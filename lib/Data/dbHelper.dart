@@ -36,7 +36,7 @@ class DbHelper{
   }
 
   _onCreate(Database db, int intVersion) async{
-    await db.execute("CREATE TABELE $Table_User("
+    await db.execute("CREATE TABLE $Table_User("
         "$C_UserID TEXT, "
         "$C_UserName TEXT, "
         "$C_Email TEXT, "
@@ -45,10 +45,16 @@ class DbHelper{
         ")");
   }
 
-  Future<int> saveData(UserModel user) async {
+ /*Future<int> saveData(UserModel user) async {
     var dbClient = await db;
     var res = await dbClient.insert(Table_User, user.toMap());
     return res;
+  }*/
+
+  Future<UserModel> saveData(UserModel user) async {
+    var dbClient = await db;
+    user.user_id = (await dbClient.insert(Table_User, user.toMap())) as String;
+    return user;
   }
 
   Future<UserModel> getLoginUser(String userId, String password) async {

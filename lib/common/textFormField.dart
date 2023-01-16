@@ -35,8 +35,10 @@ class getTextFormField extends StatelessWidget {
           if (hintName == "Email" && !validateEmail(value)) {
             return 'Please Enter Valid Email';
           }
+
           return null;
         },
+        //onSaved: (val)=>controller.text= val!,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(30.0)),

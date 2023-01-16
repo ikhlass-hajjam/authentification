@@ -32,15 +32,20 @@ class _SignupFormState extends State<SignupForm> {
 
 
   signUp() async {
+    final form=_formKey.currentState;
+
     String uid = _conUserId.text;
     String uname = _conUserName.text;
     String email = _conEmail.text;
     String passwd = _conPassword.text;
     String cpasswd = _conCPassword.text;
 
-    if (_formKey?.currentState?.validate()==true) {
+    // confiming the password
+
+    if (form?.validate()==true) {
       if (passwd != cpasswd) {
         alertDialog(context, 'Password Mismatch');
+        print('ok');
       } else {
         _formKey?.currentState?.save();
 
@@ -56,7 +61,13 @@ class _SignupFormState extends State<SignupForm> {
         });
       }
     }
+
+
+
+
   }
+
+
 
 
   @override
@@ -65,103 +76,106 @@ class _SignupFormState extends State<SignupForm> {
       appBar: AppBar(
           //title: Text('SignUp'),
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Container(
-          child: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children:[
-                SizedBox(height:40.0),//pour l'espace
-            Text('Sign up', style:TextStyle(
-                fontWeight:FontWeight.bold,
-                color:Colors.black54,
-                fontSize: 30.0),
-            ),
-            SizedBox(height:15.0),
-            Image.asset("assets/images/logo2.png",
-              height: 140.0,
-              width:140.0,
-            ),
-            SizedBox(height:10.0),
+      body: Form(
+        key:_formKey,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Container(
+            child: Center(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children:[
+                  SizedBox(height:40.0),//pour l'espace
+              Text('Sign up', style:TextStyle(
+                  fontWeight:FontWeight.bold,
+                  color:Colors.black54,
+                  fontSize: 30.0),
+              ),
+              SizedBox(height:15.0),
+              Image.asset("assets/images/logo2.png",
+                height: 140.0,
+                width:140.0,
+              ),
+              SizedBox(height:10.0),
 
 
 
-                    getTextFormField(
-                        controller: _conUserId,
-                        icon: Icons.person,
-                        hintName: 'User ID'),
+                      getTextFormField(
+                          controller: _conUserId,
+                          icon: Icons.person,
+                          hintName: 'User ID'),
+                      SizedBox(height: 10.0),
+                      getTextFormField(
+                          controller: _conUserName,
+                          icon: Icons.person_outline,
+                          inputType: TextInputType.name,
+                          hintName: 'User Name'),
                     SizedBox(height: 10.0),
                     getTextFormField(
-                        controller: _conUserName,
-                        icon: Icons.person_outline,
-                        inputType: TextInputType.name,
-                        hintName: 'User Name'),
-                  SizedBox(height: 10.0),
-                  getTextFormField(
-                        controller: _conEmail,
-                        icon: Icons.email,
-                        inputType: TextInputType.emailAddress,
-                        hintName: 'Email'),
-                  SizedBox(height: 10.0),
-                  getTextFormField(
-                        controller: _conPassword,
-                        icon: Icons.lock,
-                        hintName: 'Password',
-                        isObscureText: true,
-                        ),
-                  SizedBox(height: 10.0),
-                  getTextFormField(
-                        controller: _conCPassword,
-                        icon: Icons.lock,
-                        hintName: 'Confirm Password',
-                        isObscureText: true,
-                        ),
+                          controller: _conEmail,
+                          icon: Icons.email,
+                          inputType: TextInputType.emailAddress,
+                          hintName: 'Email'),
+                    SizedBox(height: 10.0),
+                    getTextFormField(
+                          controller: _conPassword,
+                          icon: Icons.lock,
+                          hintName: 'Password',
+                          isObscureText: true,
+                          ),
+                    SizedBox(height: 10.0),
+                    getTextFormField(
+                          controller: _conCPassword,
+                          icon: Icons.lock_reset,
+                          hintName: 'Confirm Password',
+                          isObscureText: true,
+                          ),
 
-              //le boutton
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 50.0),
-                margin:EdgeInsets.only(top:35.0,bottom:10.0),
-                //margin: EdgeInsets.all(60.0),
-                //width:double.infinity,
-                child: TextButton(
-                  child: Text(
-                    'Sign up',
-                    style: TextStyle(color:Colors.white),
+                //le boutton
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 50.0),
+                  margin:EdgeInsets.only(top:35.0,bottom:10.0),
+                  //margin: EdgeInsets.all(60.0),
+                  //width:double.infinity,
+                  child: TextButton(
+                    child: Text(
+                      'Sign up',
+                      style: TextStyle(color:Colors.white),
+                    ),
+                    onPressed: signUp,
                   ),
-                  onPressed: signUp,
+                  decoration: BoxDecoration(
+                      color:Colors.lightBlue,
+                      borderRadius: BorderRadius.circular(30.0)
+                  ),
                 ),
-                decoration: BoxDecoration(
-                    color:Colors.lightBlue,
-                    borderRadius: BorderRadius.circular(30.0)
-                ),
-              ),
 
-              // pour le lien pour s'inscrire
-              Container(
-                child:Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children:[
-                      Text('You already have account? '),
-                      TextButton(
-                        child: Text(
-                            'Login',
-                            style: TextStyle(color:Colors.blue)
-                        ),
-                        onPressed: () {
-                          // je navigue vers la route
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_)=>LoginForm()));
-                        },
-                      )
-                    ]
+                // pour le lien pour s'inscrire
+                Container(
+                  child:Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children:[
+                        Text('You already have account? '),
+                        TextButton(
+                          child: Text(
+                              'Login',
+                              style: TextStyle(color:Colors.blue)
+                          ),
+                          onPressed: () {
+                            // je navigue vers la route
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_)=>LoginForm()));
+                          },
+                        )
+                      ]
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
    ),
+      ),
   );
  }
 }
