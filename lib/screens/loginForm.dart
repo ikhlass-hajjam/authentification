@@ -35,9 +35,9 @@ class _LoginFormState extends State<LoginForm> {
     String passwd = _conPassword.text;
 
     if (uid.isEmpty) {
-      alertDialog(context, "Please Enter User ID");
+      alertDialog(context, "Please Enter your User ID");
     } else if (passwd.isEmpty) {
-      alertDialog(context, "Please Enter Password");
+      alertDialog(context, "Please Enter your Password");
     } else {
       await dbHelper.getLoginUser(uid, passwd).then((userData) {
         if (userData != null) {

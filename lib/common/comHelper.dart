@@ -2,7 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 
 alertDialog(BuildContext context, String msg) {
-  Toast.show(msg,textStyle: context, duration: Toast.lengthLong, gravity:  Toast.bottom);
+  //Toast.show(msg,textStyle: context, duration: Toast.lengthLong, gravity:  Toast.bottom);
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Alert test'),
+        content: Text(msg),
+        actions: <Widget>[
+          OutlinedButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('OK test' ),
+          ),
+        ],
+      );
+    },
+  );
 }
 
 

@@ -13,6 +13,16 @@ class HomeForm extends StatefulWidget {
 }
 
 class _HomeFormState extends State<HomeForm> {
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(title:Text('Home PoM')
+      ),
+      body:Center(child: Text('Login Successful')
+      ) ,
+    );
+  }
+  /*
   final _formKey = new GlobalKey<FormState>();
   Future<SharedPreferences> _pref = SharedPreferences.getInstance();
 
@@ -194,5 +204,5 @@ class _HomeFormState extends State<HomeForm> {
         ),
       ),
     );
-  }
+  }*/
 }

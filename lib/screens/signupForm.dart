@@ -42,12 +42,12 @@ class _SignupFormState extends State<SignupForm> {
 
     // confiming the password
 
-    if (form?.validate()==true) {
+    if (_formKey.currentState!.validate()) {
       if (passwd != cpasswd) {
         alertDialog(context, 'Password Mismatch');
         print('ok');
       } else {
-        _formKey?.currentState?.save();
+        _formKey.currentState?.save();
 
         UserModel uModel = UserModel(uid, uname, email, passwd);
         await dbHelper.saveData(uModel).then((userData) {
@@ -55,6 +55,7 @@ class _SignupFormState extends State<SignupForm> {
 
           Navigator.push(
               context, MaterialPageRoute(builder: (_) => LoginForm()));
+
         }).catchError((error) {
           print(error);
           alertDialog(context, "Error: Data Save Fail");
