@@ -1,3 +1,4 @@
+import 'package:authentification_test_2/screens/biometric_home.dart';
 import 'package:authentification_test_2/screens/loginForm.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: LoginForm(),
+      home: HomeView(),
     );
   }
 }
