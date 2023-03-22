@@ -36,6 +36,9 @@ dependencies:
   toast:
   shared_preferences:
   local_auth:
+  table_calendar:
+  intl:
+  syncfusion_flutter_calendar:
 
 
 
